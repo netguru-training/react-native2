@@ -18,19 +18,20 @@ export default class AddTask extends Component {
       title: ""
     };
   }
+  handleAdd = () => {
+    this.props.add({ name: this.state.title });
+    this.setState({ title: "" });
+  };
   render() {
     return (
       <Form style={styles.Form}>
         <Item inlineLabel>
           <Input
             placeholder="Todo title"
-            value={this.state.name}
+            value={this.state.title}
             onChangeText={title => this.setState({ title })}
           />
-          <Button
-            transparent
-            onPress={() => this.props.add({ name: this.state.title })}
-          >
+          <Button transparent onPress={() => this.handleAdd()}>
             <Text>Add </Text>
             <Icon name="add" />
           </Button>
