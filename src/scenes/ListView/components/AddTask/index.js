@@ -33,9 +33,7 @@ export default class AddTask extends Component {
             value={this.state.title}
             onChangeText={title => this.setState({ title })}
           />
-          {
-
-          }
+          {}
           <Button transparent onPress={() => this.handleAdd()}>
             <Text>Add </Text>
             <Icon name="add" />
@@ -46,5 +44,10 @@ export default class AddTask extends Component {
   }
 }
 const styles = StyleSheet.create({
-  Form: { flex: 1, justifyContent: "space-around", alignItems: "center", }
+  Form: {
+    flex: 0.1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginTop: 50
+  }
 });
