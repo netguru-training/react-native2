@@ -10,20 +10,20 @@ export default class AddTask extends Component {
         };
       }
       render() {
+          const { title } = this.state;
           return (
-        <Form style={styles.Form}>
-            <Item inlineLabel >
-            <Input 
-            placeholder='Todo title' 
-            value={this.state.title} 
-            onChangeText={title => this.setState({ title })}
-            />
-            <Button   transparent onPress={()=>this.props.add(this.state.title)}>
-          <Text>Add </Text><Icon name="add"/>
-        </Button>
-            </Item>
-        </Form>
-
+            <Form style={styles.Form}>
+                <Item inlineLabel >
+                <Input
+                  placeholder='Todo title'
+                  value={title}
+                  onChangeText={title => this.setState({ title })}
+                />
+                <Button onPress={()=>this.props.add(title)} transparent>
+                  <Text>Add </Text><Icon name="add"/>
+                </Button>
+                </Item>
+            </Form>
           )
       }
     };

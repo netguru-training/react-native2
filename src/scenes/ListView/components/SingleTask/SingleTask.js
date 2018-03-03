@@ -38,7 +38,7 @@ const leftSwipeOutBtns = [
 ];
 
 const SingleTask = ({ text }) => (
-  <Swipeout right={rightSwipeoutBtns} left={leftSwipeOutBtns} buttonWidth={100}>
+  <Swipeout right={rightSwipeoutBtns} left={leftSwipeOutBtns} buttonWidth={100} style={styles.swipeout}>
     <View style={styles.container}>
       <Text>{text}</Text>
     </View>
