@@ -9,6 +9,8 @@ export const AppNavigator = StackNavigator({
   ListView: { screen: ListView }
   // TodoDetails: { screen: LoginContainer },
   // BuildingInfo: { screen: BuildingInfoContainer }
+}, {
+  headerMode: 'none',
 });
 
 const mapStateToProps = state => ({
