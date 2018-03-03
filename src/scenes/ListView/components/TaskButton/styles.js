@@ -1,9 +1,14 @@
 import {StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 15,
+  button: {
+    height: 50,
+    width: 100,
+    borderRadius: 0,
   },
+  icon: {
+    fontSize: 32,
+  }
 });
 
 export default styles;
