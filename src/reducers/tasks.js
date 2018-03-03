@@ -6,9 +6,9 @@ function updateTodoWithStatus(todoId, tasks, status) {
 		const task = tasks.find(task => task.id === todoId);
 		const taskIndex = tasks.findIndex(task => task.id === todoId);
 		const newTask = Object.assign({}, task, {status: status});
-		const tasks = [...tasks];
-		tasks.splice(taskIndex, 1);
-		return [...tasks, task];
+		const result = [...tasks];
+		result.splice(taskIndex, 1);
+		return [...result, newTask];
 }
 
 export default function (state = [], action) {
