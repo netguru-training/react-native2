@@ -16,13 +16,17 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: "100%",
     margin: 0,
-    padding: 0
+    padding: 0,
+    backgroundColor: '#2096f3',
   },
   listItem: {
     borderBottomWidth: 0,
     padding: 15,
     paddingTop: 5,
-    paddingBottom: 5
+    paddingBottom: 5,
+    backgroundColor: '#2096f3',
+    borderBottomWidth: 1,
+    borderBottomColor: 'white'
   }
 });
 

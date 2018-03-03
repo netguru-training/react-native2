@@ -31,7 +31,7 @@ class ListViewScene extends Component {
             dataSource={this.ds.cloneWithRows(tasks)}
             renderRow={data =>
               <ListItem style={styles.listItem} key={data.id}>
-                <Text style={{paddingTop: 10, paddingBottom: 10}}>{data.name}</Text>
+                <Text style={{paddingTop: 10, paddingBottom: 10, color: 'white'}}>{data.name}</Text>
               </ListItem>
             }
             renderLeftHiddenRow={data =>
@@ -44,7 +44,7 @@ class ListViewScene extends Component {
               </View>
             }
 
-            leftOpenValue={150}
+            leftOpenValue={100}
             rightOpenValue={-232}
           />
       </View>
