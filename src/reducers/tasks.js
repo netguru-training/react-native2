@@ -1,9 +1,9 @@
 const uuidv1 = require("uuid/v1");
 import {
-  ADD_TODO,
-  SET_AS_DONE,
-  SET_AS_TODO,
-  UPDATE_TODO_DETAILS
+	ADD_TODO, REMOVE_TODO,
+	SET_AS_DONE,
+	SET_AS_TODO,
+	UPDATE_TODO_DETAILS
 } from "../actions/types";
 
 function updateTodoWithStatus(todoId, tasks, status) {
@@ -36,6 +36,9 @@ export default function(state = [], action) {
         action.payload.title,
         action.payload.description
       );
+
+    case REMOVE_TODO:
+      return state.filter(task => task.id !== action.payload);
 
     case SET_AS_DONE:
       return updateTodoWithStatus(action.payload, state, "done");
