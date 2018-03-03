@@ -26,12 +26,17 @@ class ListViewScene extends Component {
     return (
       <View style={styles.container}>
         <AddTask add={add} />
+
         <List
           style={styles.list}
           dataSource={this.ds.cloneWithRows(tasks)}
           renderRow={data => (
             <ListItem style={styles.listItem} key={data.id}>
-              <Text>{data.name}</Text>
+              <Text
+                style={{ paddingTop: 10, paddingBottom: 10, color: "white" }}
+              >
+                {data.name}
+              </Text>
             </ListItem>
           )}
           renderLeftHiddenRow={data => (
@@ -43,32 +48,27 @@ class ListViewScene extends Component {
             />
           )}
           renderRightHiddenRow={data => (
-            <Button
-              style={{
-                margin: 0,
-                padding: 0
-                // flex: 1,
-                // flexDirection: "row",
-                // justifyContent: "center",
-                // alignItems: "center"
-              }}
+            <View
+              style={{ margin: 0, padding: 0, flex: 1, flexDirection: "row" }}
             >
               <TaskButton
+                style={{ flex: 1, borderRadius: 0 }}
                 onPress={() => console.log("preview")}
                 text="Preview"
                 icon="search"
                 info
               />
               <TaskButton
+                style={{ flex: 1, borderRadius: 0 }}
                 onPress={() => console.log("delete")}
                 text="Delete"
                 icon="trash"
                 danger
               />
-            </Button>
+            </View>
           )}
-          leftOpenValue={150}
-          rightOpenValue={-150}
+          leftOpenValue={100}
+          rightOpenValue={-232}
         />
       </View>
     );
