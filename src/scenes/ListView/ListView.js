@@ -62,6 +62,7 @@ class ListViewScene extends Component {
                 onPress={this.previewTask(data)}
                 text="Preview"
                 icon="search"
+                title={data.name}
                 info
               />
               <TaskButton
@@ -81,6 +82,6 @@ class ListViewScene extends Component {
   }
 }
 ListViewScene.navigationOptions = {
-  header: "My tasks",
+  title: "My tasks",
 };
 export default connect(mapStateToProps, dispatchToProps)(ListViewScene);

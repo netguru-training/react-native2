@@ -1,20 +1,31 @@
 import React from "react";
 import { View, Text, Button } from "native-base";
 
-const TodoDetails = ({ task, navigation }) => {
+import styles from "./styles";
+
+const TodoDetails = ({ navigation }) => {
+  const { params } = navigation.state;
   const editTodo = task => () => navigation.navigate("EditTodo", task);
   return (
-    <View>
-      <Text>
-        Preview
-      </Text>
-      <Button onPress={editTodo(task)}>
-        <Text>
-          Edit
+    <View style={styles.container}>
+      <View style={styles.row}>
+        <Text style={styles.description}>
+          Description
         </Text>
-      </Button>
+      </View>
+      <View style={styles.row}>
+        <Button onPress={editTodo(params)} style={styles.button}>
+          <Text style={styles.buttonText}>
+            Edit
+          </Text>
+        </Button>
+      </View>
     </View>
   );
 }
+
+TodoDetails.navigationOptions = ({ navigation }) => ({
+  title: `${navigation.state.params.name}`,
+});
 
 export default TodoDetails;
