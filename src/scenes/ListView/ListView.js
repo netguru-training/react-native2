@@ -81,6 +81,6 @@ class ListViewScene extends Component {
   }
 }
 ListViewScene.navigationOptions = {
-  header: null,
+  header: "My tasks",
 };
 export default connect(mapStateToProps, dispatchToProps)(ListViewScene);

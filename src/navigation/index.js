@@ -4,12 +4,13 @@ import { addNavigationHelpers, StackNavigator } from "react-navigation";
 
 import ListView from "../scenes/ListView/ListView";
 import TodoDetails from "../scenes/TodoDetails/TodoDetails";
+import EditTodo from "../scenes/EditTodo/EditTodo";
 import { addListener } from "./redux";
 
 export const AppNavigator = StackNavigator({
   ListView: { screen: ListView },
   TodoDetails: { screen: TodoDetails },
-  // BuildingInfo: { screen: BuildingInfoContainer }
+  EditTodo: { screen: EditTodo }
 });
 
 const mapStateToProps = state => ({
