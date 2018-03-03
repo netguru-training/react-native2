@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     margin: 0,
     padding: 0,
-    left: -15,
   },
   listItem: {
     borderBottomWidth: 0,

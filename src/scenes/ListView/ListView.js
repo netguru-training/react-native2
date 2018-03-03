@@ -4,18 +4,22 @@ import { List, ListItem, View } from "native-base";
 import SingleTask from "./components/SingleTask/SingleTask";
 import AddTask from "./components/AddTask";
 
+import { addTodo } from "../../actions";
+
 import styles from "./styles";
 
 const mapStateToProps = state => ({
   tasks: state.tasks
 });
-const dispatchToProps = {};
+const dispatchToProps = {
+  add: addTodo
+};
 class ListView extends Component {
   render() {
-    const { tasks } = this.props;
+    const { tasks, add } = this.props;
     return (
       <View style={styles.container}>
-        <AddTask />
+        <AddTask add={add} />
         <List
           style={styles.list}
         >
