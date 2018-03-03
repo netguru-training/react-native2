@@ -10,6 +10,14 @@ import TaskButton from "../TaskButton/TaskButton";
 const rightSwipeoutBtns = [
   {
     component: <TaskButton
+      text="Edit"
+      icon="create"
+      onPress={() => console.log("edit")}
+      infor
+    />,
+  },
+  {
+    component: <TaskButton
       text="Delete"
       icon="trash"
       onPress={() => console.log("delete")}
