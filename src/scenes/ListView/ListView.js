@@ -74,4 +74,7 @@ class ListViewScene extends Component {
     );
   }
 }
+ListViewScene.navigationOptions = {
+  header: null,
+};
 export default connect(mapStateToProps, dispatchToProps)(ListViewScene);
