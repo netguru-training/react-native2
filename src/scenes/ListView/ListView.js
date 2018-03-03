@@ -4,7 +4,7 @@ import { List, ListItem, View, Text, Button } from "native-base";
 import { ListView } from "react-native";
 import AddTask from "./components/AddTask";
 
-import { addTodo } from "../../actions";
+import { addTodo, removeTodo, setTaskAsDone, setTaskAsTodo } from "../../actions";
 
 import styles from "./styles";
 import { ScrollView } from "react-native-gesture-handler";
@@ -14,7 +14,10 @@ const mapStateToProps = state => ({
   tasks: state.tasks
 });
 const dispatchToProps = {
-  add: addTodo
+  add: addTodo,
+  remove: removeTodo,
+  setAsDone: setTaskAsDone,
+  setTaskAsTodo: setTaskAsTodo
 };
 class ListViewScene extends Component {
   constructor(props) {
@@ -28,7 +31,7 @@ class ListViewScene extends Component {
   }
 
   render() {
-    const { tasks, add } = this.props;
+    const { tasks, add, remove } = this.props;
     return (
       <View style={styles.container}>
         <AddTask add={add} />
@@ -47,7 +50,7 @@ class ListViewScene extends Component {
           )}
           renderLeftHiddenRow={data => (
             <TaskButton
-              onPress={() => console.log("done")}
+              onPress={() => setAsDone(data.id)}
               text="Done"
               icon="checkmark"
               success
@@ -67,7 +70,7 @@ class ListViewScene extends Component {
               />
               <TaskButton
                 style={{ flex: 1, borderRadius: 0 }}
-                onPress={() => console.log("delete")}
+                onPress={() => remove(data.id)}
                 text="Delete"
                 icon="trash"
                 danger
