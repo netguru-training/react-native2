@@ -41,5 +41,5 @@ export default class AddTask extends Component {
   }
 }
 const styles = StyleSheet.create({
-  Form: { flex: 1, justifyContent: "space-around", alignItems: "center" }
+  Form: { flex: 1, justifyContent: "space-around", alignItems: "center", }
 });
