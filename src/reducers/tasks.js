@@ -27,7 +27,7 @@ export default function (state = [], action) {
 						return [...state, todo];
 
 				case UPDATE_TODO_DETAILS:
-						return this.updateTodoDetails(action.payload.id, action.payload.title, action.payload.description);
+						return updateTodoDetails(action.payload.id, action.payload.title, action.payload.description);
 
 				case SET_AS_DONE:
 						return updateTodoWithStatus(action.payload, state, 'done');
