@@ -21,6 +21,12 @@ class ListViewScene extends Component {
     super(props);
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   }
+
+  previewTask = task => () => {
+    const { navigation } = this.props;
+    navigation.navigate("TodoDetails", task);
+  }
+
   render() {
     const { tasks, add } = this.props;
     return (
@@ -53,7 +59,7 @@ class ListViewScene extends Component {
             >
               <TaskButton
                 style={{ flex: 1, borderRadius: 0 }}
-                onPress={() => console.log("preview")}
+                onPress={this.previewTask(data)}
                 text="Preview"
                 icon="search"
                 info
