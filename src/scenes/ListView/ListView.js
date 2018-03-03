@@ -38,7 +38,7 @@ class ListViewScene extends Component {
               <TaskButton onPress={() => console.log("done")} text="Done" icon="checkmark" success/>
             }
             renderRightHiddenRow={data =>
-              <View style={{ margin: 0, padding: 0, flex:1, flexDirection: "row", width: 300,}}>
+              <View style={{ margin: 0, padding: 0, flex:1, flexDirection: "row",}}>
                 <TaskButton onPress={() => console.log("preview")} text="Preview" icon="search" info/>
                 <TaskButton onPress={() => console.log("delete")} text="Delete" icon="trash" danger/>
               </View>
