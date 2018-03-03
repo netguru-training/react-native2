@@ -19,7 +19,9 @@ export default class AddTask extends Component {
     };
   }
   handleAdd = () => {
-    this.props.add({ name: this.state.title });
+    if (this.state.title.trim()) {
+      this.props.add({ name: this.state.title });
+    }
     this.setState({ title: "" });
   };
   render() {
@@ -31,6 +33,9 @@ export default class AddTask extends Component {
             value={this.state.title}
             onChangeText={title => this.setState({ title })}
           />
+          {
+
+          }
           <Button transparent onPress={() => this.handleAdd()}>
             <Text>Add </Text>
             <Icon name="add" />
