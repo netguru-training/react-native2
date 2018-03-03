@@ -1,28 +1,41 @@
 const uuidv1 = require("uuid/v1");
-
-import { ADD_TODO, SET_AS_DONE, SET_AS_TODO } from "../actions/types";
+import {
+  ADD_TODO,
+  SET_AS_DONE,
+  SET_AS_TODO,
+  UPDATE_TODO_DETAILS
+} from "../actions/types";
 
 function updateTodoWithStatus(todoId, tasks, status) {
   return tasks.map(task => {
-    if (task.id === todoId) return { ...task, status };
-    return task;
+    return task.id === todoId ? { ...task, status } : task;
   });
 }
 
-export default function(
-  state = [{ id: 0, name: "test" }, { id: 1, name: "bla" }],
-  action
-) {
+function updateTodoDetails(todoId, title, description) {
+  return tasks.map(task => {
+    return task.id === todoId ? { ...task, title, description } : task;
+  });
+}
+
+export default function(state = [], action) {
   switch (action.type) {
     case ADD_TODO:
       const id = uuidv1();
       const todo = {
         id: id,
         name: action.payload.name,
-        description: action.payload.description,
+        description: "",
         status: "todo"
       };
-      return [...state, todo];
+      return [todo, ...state];
+
+    case UPDATE_TODO_DETAILS:
+      return updateTodoDetails(
+        action.payload.id,
+        action.payload.title,
+        action.payload.description
+      );
 
     case SET_AS_DONE:
       return updateTodoWithStatus(action.payload, state, "done");

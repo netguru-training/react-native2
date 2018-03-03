@@ -1,4 +1,4 @@
-import {ADD_TODO, SET_AS_DONE, SET_AS_TODO} from "./types";
+import {ADD_TODO, SET_AS_DONE, SET_AS_TODO, UPDATE_TODO_DETAILS} from "./types";
 
 export function addTodo(task) {
 		return {
@@ -18,5 +18,12 @@ export function setTaskAsTodo(taskId) {
 		return {
 				type: SET_AS_TODO,
 				payload: taskId
+		}
+}
+
+export function updateTodoDetails(payload) {
+		return {
+				type: UPDATE_TODO_DETAILS,
+				payload: payload
 		}
 }
