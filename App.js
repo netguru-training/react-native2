@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {Text, View, Button} from 'native-base';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 
@@ -12,7 +13,9 @@ export default class App extends React.Component {
 				return (
 						<Provider store={createStoreWithMiddleware(reducers)}>
 								<View>
-										<Text>joł joł team 2</Text>
+                  <Button>
+                    <Text>Click Me! </Text>
+                  </Button>
 								</View>
 						</Provider>
 				)
