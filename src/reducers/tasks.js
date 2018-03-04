@@ -18,7 +18,7 @@ function updateTodoDetails(todoId, title, description) {
   });
 }
 
-export default function(state = [], action) {
+export default function(state = [], action = {}) {
   switch (action.type) {
     case ADD_TODO:
       const id = uuidv1();
