@@ -34,11 +34,6 @@ class EditTodo extends Component {
   }
   handleEdit = () => {
     const { params } = this.props.navigation.state;
-    console.log("todo", {
-      name: this.state.name,
-      description: this.state.desc,
-      id: params.id
-    });
     this.props.edit({
       name: this.state.name,
       description: this.state.desc,
