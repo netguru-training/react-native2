@@ -9,9 +9,18 @@ const TodoDetails = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <Text style={styles.description}>
-          Description
-        </Text>
+
+        {
+          params.description ? (
+            <Text style={styles.description}>
+              {params.description}
+            </Text>
+          ) : (
+            <Text style={styles.description}>
+              No description provided
+            </Text>
+          )
+        }
       </View>
       <View style={styles.row}>
         <Button onPress={editTodo(params)} style={styles.button}>
