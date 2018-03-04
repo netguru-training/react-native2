@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { List, ListItem, View, Text, Button } from "native-base";
+import { List, ListItem, View, Text, Button, Toast } from "native-base";
 import { ListView, Dimensions } from "react-native";
 import AddTask from "./components/AddTask";
 
@@ -28,6 +28,9 @@ class ListViewScene extends Component {
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.state = {
+      showToast: false
+    }
   }
 
   previewTask = task => () => {
@@ -60,6 +63,16 @@ class ListViewScene extends Component {
     );
     return todo.status === "todo" ? setAsDone : setAsTodo;
   };
+
+  removeTodo = todo => () => {
+    const { remove } = this.props;
+    remove(todo.id);
+    Toast.show({
+      text: `Deleted ${todo.name}`,
+      position: 'bottom',
+      buttonText: 'Okay'
+    })
+  }
 
   render() {
     const { tasks, add, remove, setTaskAsDone, setTaskAsTodo } = this.props;
@@ -103,7 +116,7 @@ class ListViewScene extends Component {
               />
               <TaskButton
                 style={styles.taskButton}
-                onPress={() => remove(data.id)}
+                onPress={this.removeTodo(data)}
                 text="Delete"
                 icon="trash"
                 danger

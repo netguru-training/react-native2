@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, AsyncStorage, AppState } from "react-native";
-import { Text, View, Button } from "native-base";
+import { Root, Text, View, Button } from "native-base";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -50,10 +50,12 @@ export default class App extends React.Component {
 
   render() {
     const { store, isLoading } = this.state;
-    if (isLoading) return <Text>Is loading...</Text>;
+    if (isLoading) return <View style={styles.container}></View>
     return (
       <Provider store={store}>
-        <AppWithNavigationState />
+        <Root>
+          <AppWithNavigationState />
+        </Root>
       </Provider>
     );
   }
