@@ -10,10 +10,13 @@ import {
   Form,
   Item,
   Input,
-  Label
+  Label,
+  Toast
 } from "native-base";
-import { Dimensions, TextInput } from "react-native";
+import { TextInput } from "react-native";
 import { updateTodoDetails } from "../../actions/";
+
+import styles from "./styles";
 
 const mapStateToProps = state => ({
   task: state.tasks.find(
@@ -29,9 +32,11 @@ class EditTodo extends Component {
     const { task } = this.props;
     this.state = {
       desc: task.description,
-      name: task.name
+      name: task.name,
+      showToast: false,
     };
   }
+
   handleEdit = () => {
     const { params } = this.props.navigation.state;
     this.props.edit({
@@ -39,57 +44,47 @@ class EditTodo extends Component {
       description: this.state.desc,
       id: params.id
     });
+    Toast.show({
+      text: 'Task successfully saved',
+      position: 'bottom',
+      type: 'success',
+      buttonText: 'Okay',
+    })
   };
 
   render() {
     return (
       <View>
-        <Form
-          style={{
-            height: 300
-          }}
-        >
-          <Item floatingLabel>
+        <Form style={styles.form}>
+          <Item style={styles.input} floatingLabel>
             <Label>Title</Label>
             <Input
               value={this.state.name}
               onChangeText={name => this.setState({ name })}
+              style={styles.input}
+              regular
             />
           </Item>
+          <Label style={styles.labelDesc}>Description</Label>
           <Item
-            floatingLabel
+            style={styles.descBox}
             regular
             last
-            style={{
-              height: 200,
-              marginLeft: 12,
-              marginRight: 10
-            }}
           >
-            <Label>Description</Label>
             <Input
-              style={{
-                height: 200
-              }}
+              style={styles.inputDesc}
               multiline={true}
               value={this.state.desc}
               onChangeText={desc => this.setState({ desc })}
+              regular
             />
           </Item>
         </Form>
         <Button
-          style={{
-            alignContent: "center",
-            width: Dimensions.get("window").width
-          }}
+          style={styles.button}
           onPress={() => this.handleEdit()}
         >
-          <Text
-            style={{
-              textAlign: "center",
-              width: Dimensions.get("window").width
-            }}
-          >
+          <Text style={styles.buttonText}>
             Save
           </Text>
         </Button>
