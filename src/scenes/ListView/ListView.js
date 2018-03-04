@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 const dispatchToProps = {
   add: addTodo,
   remove: removeTodo,
-  setAsDone: setTaskAsDone,
+  setTaskAsDone: setTaskAsDone,
   setTaskAsTodo: setTaskAsTodo
 };
 class ListViewScene extends Component {
@@ -30,8 +30,28 @@ class ListViewScene extends Component {
     navigation.navigate("TodoDetails", task);
   }
 
+  todoDoneStyles = (todo) => {
+      return todo.status === 'done' ? { textDecorationLine: 'line-through' } : { };
+  }
+
+  getStatusButton = (todo, setTaskAsDone, setTaskAsTodo) => {
+  		const setAsDone = (<TaskButton
+                  onPress={() => setTaskAsDone(todo.id)}
+                  text="Done"
+                  icon="checkmark"
+                  success
+              />);
+  		const setAsTodo = (<TaskButton
+                  onPress={() => setTaskAsTodo(todo.id)}
+                  text="Todo"
+                  icon="arrow-round-back"
+                  info
+              />);
+  		return todo.status === 'todo' ? setAsDone : setAsTodo;
+  }
+
   render() {
-    const { tasks, add, remove } = this.props;
+    const { tasks, add, remove, setTaskAsDone, setTaskAsTodo } = this.props;
     return (
       <View style={styles.container}>
         <AddTask add={add} />
@@ -42,19 +62,14 @@ class ListViewScene extends Component {
           renderRow={data => (
             <ListItem style={styles.listItem} key={data.id}>
               <Text
-                style={{ paddingTop: 10, paddingBottom: 10, color: "white" }}
+                style={[{ paddingTop: 10, paddingBottom: 10, color: "white" }, this.todoDoneStyles(data)]}
               >
                 {data.name}
               </Text>
             </ListItem>
           )}
           renderLeftHiddenRow={data => (
-            <TaskButton
-              onPress={() => setAsDone(data.id)}
-              text="Done"
-              icon="checkmark"
-              success
-            />
+		        this.getStatusButton(data, setTaskAsDone, setTaskAsTodo)
           )}
           renderRightHiddenRow={data => (
             <View
