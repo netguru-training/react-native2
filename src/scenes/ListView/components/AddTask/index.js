@@ -26,17 +26,16 @@ export default class AddTask extends Component {
   };
   render() {
     return (
-      <Form style={styles.Form}>
-        <Item inlineLabel>
+      <Form style={styles.addForm}>
+        <Item style={styles.addItem} inlineLabel>
           <Input
             placeholder="Todo title"
             value={this.state.title}
             onChangeText={title => this.setState({ title })}
           />
-          {}
-          <Button transparent onPress={() => this.handleAdd()}>
-            <Text>Add </Text>
-            <Icon name="add" />
+          <Button onPress={() => this.handleAdd()} style={styles.addButton} iconLeft>
+            <Icon style={styles.addButtonIcon} name="add" />
+            <Text style={styles.addButtonText}>Add </Text>
           </Button>
         </Item>
       </Form>
@@ -44,9 +43,25 @@ export default class AddTask extends Component {
   }
 }
 const styles = StyleSheet.create({
-  Form: {
-    flex: 0.2,
+  addForm: {
+    flex: 1,
+    maxHeight: 50,
     justifyContent: "center",
     alignItems: "center",
+  },
+  addItem: {
+    borderBottomWidth: 0,
+  },
+  addButton: {
+    backgroundColor: "#ffffff",
+    borderRadius: 0,
+    height: 50,
+  },
+  addButtonText: {
+    color: "#2096f3",
+  },
+  addButtonIcon: {
+    fontSize: 36,
+    color: "#2096f3",
   }
 });
