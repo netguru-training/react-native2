@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 
 const styles = StyleSheet.create({
@@ -10,10 +10,11 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   list: {
-    flex: 1,
+    flex: 0.5,
     flexDirection: "column",
     width: "100%",
     margin: 0,
+    minHeight: 0,
     padding: 0,
     backgroundColor: '#2096f3',
   },
@@ -50,6 +51,15 @@ const styles = StyleSheet.create({
     padding: 0,
     borderBottomWidth: 1,
     borderBottomColor: "#ffffff",
+  },
+  itemHeaders: {
+    backgroundColor: "#2E2E3A",
+    width: Dimensions.get("window").width,
+  },
+  itemHeadersText: {
+    color: "#ffffff",
+    textAlign: "center",
+    width: Dimensions.get("window").width - 30,
   }
 });
 
