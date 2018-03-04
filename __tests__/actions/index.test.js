@@ -7,8 +7,9 @@ describe('actions', () => {
 		beforeEach(() => {
 				todo = {
 						id: 123,
-						title: 'my task',
-						description: 'description of the task'
+						name: 'my task',
+						description: 'description of the task',
+						status: 'todo'
 				};
 		});
 
@@ -27,12 +28,16 @@ describe('actions', () => {
 						expect(action.payload.id).toBe(123);
 				});
 
-				it('has correct payload title', () => {
-						expect(action.payload.title).toBe('my task');
+				it('has correct payload name', () => {
+						expect(action.payload.name).toBe('my task');
 				});
 
 				it('has correct payload description', () => {
 						expect(action.payload.description).toBe('description of the task');
+				});
+
+				it('has correct payload status', () => {
+						expect(action.payload.status).toBe('todo');
 				});
 		});
 
@@ -99,12 +104,16 @@ describe('actions', () => {
 						expect(action.payload.id).toBe(123);
 				});
 
-				it('has correct payload title', () => {
-						expect(action.payload.title).toBe('my task');
+				it('has correct payload name', () => {
+						expect(action.payload.name).toBe('my task');
 				});
 
 				it('has correct payload description', () => {
 						expect(action.payload.description).toBe('description of the task');
+				});
+
+				it('has correct payload status', () => {
+						expect(action.payload.status).toBe('todo');
 				});
 		});
 });
