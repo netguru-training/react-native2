@@ -33,8 +33,9 @@ class ListViewScene extends Component {
     }
   }
 
-  previewTask = task => () => {
+  previewTask = (task, secId, rowId, rowMap) => () => {
     const { navigation } = this.props;
+    rowMap[`${secId}${rowId}`].props.closeRow();
     navigation.navigate("TodoDetails", task);
   };
 
@@ -42,11 +43,15 @@ class ListViewScene extends Component {
     return todo.status === "done" ? { textDecorationLine: "line-through" } : {};
   };
 
-  getStatusButton = (todo, setTaskAsDone, setTaskAsTodo) => {
+
+  getStatusButton = (todo, secId, rowId, rowMap, setTaskAsDone, setTaskAsTodo) => {
     const setAsDone = (
       <TaskButton
         style={styles.taskButtonDone}
-        onPress={() => setTaskAsDone(todo.id)}
+        onPress={() => {
+          rowMap[`${secId}${rowId}`].props.closeRow();
+          setTaskAsDone(todo.id);
+        }}
         text="Done"
         icon="checkmark"
         success
@@ -55,7 +60,10 @@ class ListViewScene extends Component {
     const setAsTodo = (
       <TaskButton
         style={styles.taskButtonDone}
-        onPress={() => setTaskAsTodo(todo.id)}
+        onPress={() => {
+          rowMap[`${secId}${rowId}`].props.closeRow();
+          setTaskAsTodo(todo.id)
+        }}
         text="Todo"
         icon="arrow-round-back"
         info
@@ -64,8 +72,9 @@ class ListViewScene extends Component {
     return todo.status === "todo" ? setAsDone : setAsTodo;
   };
 
-  removeTodo = todo => () => {
+  removeTodo = (todo, secId, rowId, rowMap) => () => {
     const { remove } = this.props;
+    rowMap[`${secId}${rowId}`].props.closeRow();
     remove(todo.id);
     Toast.show({
       text: `Deleted ${todo.name}`,
@@ -101,14 +110,14 @@ class ListViewScene extends Component {
               </Text>
             </ListItem>
           )}
-          renderLeftHiddenRow={data =>
-            this.getStatusButton(data, setTaskAsDone, setTaskAsTodo)
+          renderLeftHiddenRow={(data, secId, rowId, rowMap) =>
+            this.getStatusButton(data, secId, rowId, rowMap, setTaskAsDone, setTaskAsTodo)
           }
-          renderRightHiddenRow={data => (
+          renderRightHiddenRow={(data, secId, rowId, rowMap) => (
             <View style={styles.rightHiddenRow}>
               <TaskButton
                 style={styles.taskButton}
-                onPress={this.previewTask(data)}
+                onPress={this.previewTask(data, secId, rowId, rowMap)}
                 text="Preview"
                 icon="search"
                 title={data.name}
@@ -116,7 +125,7 @@ class ListViewScene extends Component {
               />
               <TaskButton
                 style={styles.taskButton}
-                onPress={this.removeTodo(data)}
+                onPress={this.removeTodo(data, secId, rowId, rowMap)}
                 text="Delete"
                 icon="trash"
                 danger
@@ -141,14 +150,14 @@ class ListViewScene extends Component {
               </Text>
             </ListItem>
           )}
-          renderLeftHiddenRow={data =>
-            this.getStatusButton(data, setTaskAsDone, setTaskAsTodo)
+          renderLeftHiddenRow={(data, secId, rowId, rowMap) =>
+            this.getStatusButton(data, secId, rowId, rowMap, setTaskAsDone, setTaskAsTodo)
           }
-          renderRightHiddenRow={data => (
+          renderRightHiddenRow={(data, secId, rowId, rowMap) => (
             <View style={styles.rightHiddenRow}>
               <TaskButton
                 style={styles.taskButton}
-                onPress={this.previewTask(data)}
+                onPress={this.previewTask(data, secId, rowId, rowMap)}
                 text="Preview"
                 icon="search"
                 title={data.name}
@@ -156,7 +165,7 @@ class ListViewScene extends Component {
               />
               <TaskButton
                 style={styles.taskButton}
-                onPress={() => remove(data.id)}
+                onPress={this.removeTodo(data, secId, rowId, rowMap)}
                 text="Delete"
                 icon="trash"
                 danger
