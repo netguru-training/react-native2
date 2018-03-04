@@ -25,7 +25,7 @@ class ListViewScene extends Component {
   previewTask = task => () => {
     const { navigation } = this.props;
     navigation.navigate("TodoDetails", task);
-  }
+  };
 
   render() {
     const { tasks, add } = this.props;
@@ -81,6 +81,6 @@ class ListViewScene extends Component {
   }
 }
 ListViewScene.navigationOptions = {
-  header: "My tasks",
+  title: "My tasks"
 };
 export default connect(mapStateToProps, dispatchToProps)(ListViewScene);
