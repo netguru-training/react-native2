@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { List, ListItem, View, Text, Button } from "native-base";
-import { ListView } from "react-native";
+import { ListView, Dimensions } from "react-native";
 import AddTask from "./components/AddTask";
 
 import { addTodo, removeTodo, setTaskAsDone, setTaskAsTodo } from "../../actions";
@@ -32,6 +32,7 @@ class ListViewScene extends Component {
 
   render() {
     const { tasks, add, remove } = this.props;
+    const { width } = Dimensions.get("window");
     return (
       <View style={styles.container}>
         <AddTask add={add} />
@@ -42,7 +43,7 @@ class ListViewScene extends Component {
           renderRow={data => (
             <ListItem style={styles.listItem} key={data.id}>
               <Text
-                style={{ paddingTop: 10, paddingBottom: 10, color: "white" }}
+                style={styles.listText}
               >
                 {data.name}
               </Text>
@@ -50,6 +51,7 @@ class ListViewScene extends Component {
           )}
           renderLeftHiddenRow={data => (
             <TaskButton
+              style={styles.taskButtonDone}
               onPress={() => setAsDone(data.id)}
               text="Done"
               icon="checkmark"
@@ -58,10 +60,10 @@ class ListViewScene extends Component {
           )}
           renderRightHiddenRow={data => (
             <View
-              style={{ margin: 0, padding: 0, flex: 1, flexDirection: "row" }}
+              style={styles.rightHiddenRow}
             >
               <TaskButton
-                style={{ flex: 1, borderRadius: 0 }}
+                style={styles.taskButton}
                 onPress={this.previewTask(data)}
                 text="Preview"
                 icon="search"
@@ -69,7 +71,7 @@ class ListViewScene extends Component {
                 info
               />
               <TaskButton
-                style={{ flex: 1, borderRadius: 0 }}
+                style={styles.taskButton}
                 onPress={() => remove(data.id)}
                 text="Delete"
                 icon="trash"
@@ -77,8 +79,8 @@ class ListViewScene extends Component {
               />
             </View>
           )}
-          leftOpenValue={100}
-          rightOpenValue={-232}
+          leftOpenValue={width / 3}
+          rightOpenValue={-(width * 2 /3)}
         />
       </View>
     );
@@ -86,5 +88,11 @@ class ListViewScene extends Component {
 }
 ListViewScene.navigationOptions = {
   title: "My tasks",
+  headerStyle: {
+    backgroundColor: "#2096f3",
+  },
+  headerTitleStyle: {
+    color: "#ffffff",
+  },
 };
 export default connect(mapStateToProps, dispatchToProps)(ListViewScene);

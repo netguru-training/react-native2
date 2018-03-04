@@ -3,8 +3,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    borderColor: "black",
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -27,6 +25,31 @@ const styles = StyleSheet.create({
     backgroundColor: '#2096f3',
     borderBottomWidth: 1,
     borderBottomColor: 'white'
+  },
+  listText: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    color: "white"
+  },
+  taskButton: {
+    flex: 1,
+    borderRadius: 0,
+    height: "100%",
+  },
+  taskButtonDone: {
+    flex: 1,
+    borderRadius: 0,
+    height: "100%",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ffffff",
+  },
+  rightHiddenRow: {
+    flex: 1,
+    flexDirection: "row",
+    margin: 0,
+    padding: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ffffff",
   }
 });
 

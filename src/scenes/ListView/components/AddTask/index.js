@@ -26,14 +26,13 @@ export default class AddTask extends Component {
   };
   render() {
     return (
-      <Form style={styles.Form}>
-        <Item inlineLabel>
+      <Form style={styles.addForm}>
+        <Item style={styles.addItem} inlineLabel>
           <Input
             placeholder="Todo title"
             value={this.state.title}
             onChangeText={title => this.setState({ title })}
           />
-          {}
           <Button transparent onPress={() => this.handleAdd()}>
             <Text>Add </Text>
             <Icon name="add" />
@@ -44,9 +43,13 @@ export default class AddTask extends Component {
   }
 }
 const styles = StyleSheet.create({
-  Form: {
-    flex: 0.2,
+  addForm: {
+    flex: 0.1,
+    maxHeight: 200,
     justifyContent: "center",
     alignItems: "center",
+  },
+  addItem: {
+    borderBottomWidth: 0,
   }
 });
