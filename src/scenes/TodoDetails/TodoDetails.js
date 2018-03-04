@@ -17,6 +17,13 @@ const mapStateToProps = state => ({
 });
 const dispatchToProps = {};
 class TodoDetails extends Component {
+  componentWillReceiveProps(nextProps) {
+    const { navigation, task } = nextProps;
+    if (task.name !== this.props.task.name) {
+      navigation.setParams({ ...navigation.state.params, name: task.name });
+    }
+  }
+
   render() {
     const { task, navigation } = this.props;
     const editTodo = task => () => navigation.navigate("EditTodo", task);
@@ -40,7 +47,8 @@ class TodoDetails extends Component {
 }
 
 TodoDetails.navigationOptions = ({ navigation }) => ({
-  title: `${navigation.state.params.name}`
+  title: `${navigation.state.params.name}`,
+  headerBackTitle: "Back"
 });
 
 export default connect(mapStateToProps, dispatchToProps)(TodoDetails);

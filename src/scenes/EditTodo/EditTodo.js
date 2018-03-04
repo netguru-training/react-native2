@@ -39,6 +39,7 @@ class EditTodo extends Component {
 
   handleEdit = () => {
     const { params } = this.props.navigation.state;
+    this.props.navigation.setParams({ ...params, name: this.state.name });
     this.props.edit({
       name: this.state.name,
       description: this.state.desc,
@@ -93,6 +94,6 @@ class EditTodo extends Component {
   }
 }
 EditTodo.navigationOptions = {
-  title: "Edit todo"
+  headerTitle: "Edit todo",
 };
 export default connect(mapStateToProps, dispatchToProps)(EditTodo);
